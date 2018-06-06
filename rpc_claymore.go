@@ -28,10 +28,13 @@ type Crypto struct {
 }
 
 func (c Crypto) String() (s string) {
-	s += fmt.Sprintf("HashRate: %d\n", c.HashRate)
-	s += fmt.Sprintf("Shares: %d\n", c.Shares)
-	s += fmt.Sprintf("RejectedShares: %d\n", c.RejectedShares)
-	s += fmt.Sprintf("InvalidShares: %d\n", c.InvalidShares)
+	if c.HashRate+c.RejectedShares+c.InvalidShares+c.Shares == 0 {
+		return "Disabled\n"
+	}
+	s += fmt.Sprintf("HashRate:         %8d Mh/s\n", c.HashRate)
+	s += fmt.Sprintf("Shares:           %8d\n", c.Shares)
+	s += fmt.Sprintf("Rejected Shares:  %8d\n", c.RejectedShares)
+	s += fmt.Sprintf("Invalid Shares:   %8d\n", c.InvalidShares)
 	return s
 }
 
@@ -42,8 +45,11 @@ type PoolInfo struct {
 }
 
 func (p PoolInfo) String() (s string) {
-	s += fmt.Sprintf("Address: %s\n", p.Address)
-	s += fmt.Sprintf("Switches: %d\n", p.Switches)
+	if p.Address == "" {
+		return "Disabled\n"
+	}
+	s += fmt.Sprintf("Address:   %s\n", p.Address)
+	s += fmt.Sprintf("Switches:  %d\n", p.Switches)
 	return s
 }
 
@@ -56,10 +62,10 @@ type GPU struct {
 }
 
 func (gpu GPU) String() (s string) {
-	s += fmt.Sprintf("Hash Rate: %d\n", gpu.HashRate)
-	s += fmt.Sprintf("Alt Hash Rate: %d\n", gpu.AltHashRate)
-	s += fmt.Sprintf("Temperature: %d\n", gpu.Temperature)
-	s += fmt.Sprintf("Fan Speed: %d\n", gpu.FanSpeed)
+	s += fmt.Sprintf("Hash Rate:     %8d Mh/s\n", gpu.HashRate)
+	s += fmt.Sprintf("Alt Hash Rate: %8d Mh/s\n", gpu.AltHashRate)
+	s += fmt.Sprintf("Temperature:   %8d º\n", gpu.Temperature)
+	s += fmt.Sprintf("Fan Speed:     %8d %%\n", gpu.FanSpeed)
 	return s
 }
 
@@ -76,8 +82,8 @@ type MinerInfo struct {
 
 func (m MinerInfo) String() string {
 	var s string
-	s += fmt.Sprintf("Version: %s\n", m.Version)
-	s += fmt.Sprintf("Up Time: %d\n", m.UpTime)
+	s += fmt.Sprintf("Version:   %s\n", m.Version)
+	s += fmt.Sprintf("Up Time:   %d min\n", m.UpTime)
 	s += "\n"
 	s += fmt.Sprintf("Main Crypto\n%s\n", m.MainCrypto)
 	s += fmt.Sprintf("Alt Crypto\n%s\n", m.AltCrypto)
