@@ -69,7 +69,8 @@ func (gpu GPU) String() (s string) {
 	return s
 }
 
-func (gpu GPU) isStuck() bool {
+// IsStuck Return true if the GPU is not mining
+func (gpu GPU) IsStuck() bool {
 	return gpu.HashRate == 0
 }
 
@@ -84,10 +85,11 @@ type MinerInfo struct {
 	GPUS       []GPU
 }
 
-func (m MinerInfo) stuckGPUs() int {
+// StuckGPUs Return the number of GPUs that are not mining
+func (m MinerInfo) StuckGPUs() int {
 	var total int
 	for _, gpu := range m.GPUS {
-		if gpu.isStuck() {
+		if gpu.IsStuck() {
 			total++
 		}
 	}
