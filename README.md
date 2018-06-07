@@ -2,6 +2,9 @@
 
 Package to take information about claymore status
 
+[![Version](https://img.shields.io/github/tag/ivandelabeldad/rpc-claymore.svg)](https://github.com/ivandelabeldad/rpc-claymore)
+[![License](https://img.shields.io/badge/license-MIT-orange.svg)](https://github.com/ivandelabeldad/rpc-claymore/blob/master/LICENSE)
+
 ## Installation
 
 ```go
@@ -18,7 +21,9 @@ if err != nil {
 }
 fmt.Printf("%v", info)
 ```
-Output:
+
+### Output:
+
 ```
 Version:   11.8
 Up Time:     23 min
@@ -56,7 +61,7 @@ Fan Speed:           60 %
 You can access either each field on its own:
 
 ```go
-info.MainCrypto.HashRate \\ int 119313
+info.MainCrypto.HashRate // int 119313
 ```
 
 ## Warning
