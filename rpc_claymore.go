@@ -69,6 +69,10 @@ func (gpu GPU) String() (s string) {
 	return s
 }
 
+func (gpu GPU) isStuck() bool {
+	return gpu.HashRate == 0
+}
+
 // MinerInfo Information about the miner
 type MinerInfo struct {
 	Version    string
@@ -78,6 +82,16 @@ type MinerInfo struct {
 	MainPool   PoolInfo
 	AltPool    PoolInfo
 	GPUS       []GPU
+}
+
+func (m MinerInfo) stuckGPUs() int {
+	var total int
+	for _, gpu := range m.GPUS {
+		if gpu.isStuck() {
+			total++
+		}
+	}
+	return total
 }
 
 func (m MinerInfo) String() string {
