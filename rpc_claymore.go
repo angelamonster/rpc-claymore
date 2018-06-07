@@ -49,7 +49,7 @@ func (p PoolInfo) String() (s string) {
 		return "Disabled\n"
 	}
 	s += fmt.Sprintf("Address:   %s\n", p.Address)
-	s += fmt.Sprintf("Switches:  %d\n", p.Switches)
+	s += fmt.Sprintf("Switches:  %"+strconv.Itoa(len(p.Address))+"d\n", p.Switches)
 	return s
 }
 
@@ -82,8 +82,8 @@ type MinerInfo struct {
 
 func (m MinerInfo) String() string {
 	var s string
-	s += fmt.Sprintf("Version:   %s\n", m.Version)
-	s += fmt.Sprintf("Up Time:   %d min\n", m.UpTime)
+	s += fmt.Sprintf("Version:   %10s\n", m.Version)
+	s += fmt.Sprintf("Up Time:   %10d min\n", m.UpTime)
 	s += "\n"
 	s += fmt.Sprintf("Main Crypto\n%s\n", m.MainCrypto)
 	s += fmt.Sprintf("Alt Crypto\n%s\n", m.AltCrypto)
@@ -111,6 +111,7 @@ func (m Miner) Restart() error {
 	if err != nil {
 		return err
 	}
+	defer client.Close()
 	args.psw = m.Password
 	return client.Call(methodRestartMiner, args, nil)
 }
@@ -121,6 +122,7 @@ func (m Miner) Reboot() error {
 	if err != nil {
 		return err
 	}
+	defer client.Close()
 	args.psw = m.Password
 	return client.Call(methodReboot, args, nil)
 }
@@ -133,8 +135,8 @@ func (m Miner) GetInfo() (MinerInfo, error) {
 	if err != nil {
 		return mi, err
 	}
+	defer client.Close()
 	args.psw = m.Password
-	fmt.Println(args)
 	err = client.Call(methodGetInfo, args, &reply)
 	if err != nil {
 		return mi, err

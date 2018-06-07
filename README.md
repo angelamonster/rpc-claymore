@@ -21,7 +21,7 @@ fmt.Printf("%v", info)
 Output:
 ```
 Version:   11.8
-Up Time:   23 min
+Up Time:     23 min
 
 Main Crypto
 HashRate:           119162 Mh/s
@@ -34,7 +34,7 @@ Disabled
 
 Main Pool
 Address:   eth-eu1.nanopool.org:9999
-Switches:  0
+Switches:                          0
 
 Alt Pool
 Disabled
@@ -57,7 +57,6 @@ You can access either each field on its own:
 
 ```go
 info.MainCrypto.HashRate \\ int 119313
-...
 ```
 
 ## Warning
