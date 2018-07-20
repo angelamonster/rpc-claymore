@@ -4,6 +4,7 @@ Package to take information about claymore status
 
 [![Version](https://img.shields.io/github/tag/ivandelabeldad/rpc-claymore.svg)](https://github.com/ivandelabeldad/rpc-claymore)
 [![License](https://img.shields.io/badge/license-MIT-orange.svg)](https://github.com/ivandelabeldad/rpc-claymore/blob/master/LICENSE)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fivanbeldad%2Frpc-claymore.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fivanbeldad%2Frpc-claymore?ref=badge_shield)
 
 ## Installation
 
@@ -74,3 +75,6 @@ to support it (May be never).
 
 RPC Claymore is open-sourced software licensed under
 the [MIT license](https://github.com/ivandelabeldad/rpc-claymore/blob/master/LICENSE).
+
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fivanbeldad%2Frpc-claymore.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fivanbeldad%2Frpc-claymore?ref=badge_large)
