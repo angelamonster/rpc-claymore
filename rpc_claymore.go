@@ -1,6 +1,7 @@
 package rpcclaymore
 
 import (
+	"encoding/json"
 	"fmt"
 	"net/rpc/jsonrpc"
 	"strconv"
@@ -112,19 +113,9 @@ func (m MinerInfo) String() string {
 }
 
 func (m MinerInfo) json_string() string {
-	var s string
-	s += fmt.Sprintf("Version:   %10s\n", m.Version)
-	s += fmt.Sprintf("Up Time:   %10d min\n", m.UpTime)
-	s += "\n"
-	s += fmt.Sprintf("Main Crypto\n%s\n", m.MainCrypto)
-	s += fmt.Sprintf("Alt Crypto\n%s\n", m.AltCrypto)
-	s += fmt.Sprintf("Main Pool\n%s\n", m.MainPool)
-	s += fmt.Sprintf("Alt Pool\n%s\n", m.AltPool)
-	for i, gpu := range m.GPUS {
-		s += fmt.Sprintf("GPU %d\n%s\n", i, gpu)
-	}
+	json_bytes, _ := json.Marshal(m)
 
-	return s
+	return string(json_bytes)
 }
 
 // Miner creates an instance to get info of a miner
