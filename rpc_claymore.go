@@ -177,17 +177,17 @@ func (m Miner) GetInfo() (MinerInfo, error) {
 }
 
 func (m Miner) GetJson() ([]string, error) {
-	var mi MinerInfo
+	//var mi MinerInfo
 	var reply []string
 	client, err := jsonrpc.Dial("tcp", m.Address)
 	if err != nil {
-		return mi, err
+		return _, err
 	}
 	defer client.Close()
 	args.psw = m.Password
 	err = client.Call(methodGetInfo, args, &reply)
 	if err != nil {
-		return mi, err
+		return _, err
 	}
 	return reply, nil
 }
