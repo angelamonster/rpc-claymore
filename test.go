@@ -5,12 +5,13 @@ import (
 	//"net/rpc/jsonrpc"
 	//"strconv"
 	//"strings"
-	claymore "./rpcclaymore"
+	claymore "./"
 )
 
 func main() {
 	miner := claymore.Miner{Address: "w0004:3333"}
 	info, err := miner.GetInfo()
+
 	if err != nil {
 		//log.Fatal(err)
 		fmt.Printf(err)
