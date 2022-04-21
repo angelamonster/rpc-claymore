@@ -5,7 +5,7 @@ import (
 	//"net/rpc/jsonrpc"
 	//"strconv"
 	//"strings"
-	claymore "rpcclaymore"
+	claymore "./rpcclaymore"
 )
 
 func main() {
