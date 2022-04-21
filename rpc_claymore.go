@@ -176,6 +176,22 @@ func (m Miner) GetInfo() (MinerInfo, error) {
 	return parseResponse(reply), nil
 }
 
+func (m Miner) GetJson() (MinerInfo, error) {
+	var mi MinerInfo
+	var reply []string
+	client, err := jsonrpc.Dial("tcp", m.Address)
+	if err != nil {
+		return mi, err
+	}
+	defer client.Close()
+	args.psw = m.Password
+	err = client.Call(methodGetInfo, args, &reply)
+	if err != nil {
+		return mi, err
+	}
+	return reply, nil
+}
+
 func parseResponse(info []string) MinerInfo {
 	var mi MinerInfo
 	var group []string
