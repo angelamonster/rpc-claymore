@@ -181,13 +181,13 @@ func (m Miner) GetJson() ([]string, error) {
 	var reply []string
 	client, err := jsonrpc.Dial("tcp", m.Address)
 	if err != nil {
-		return _, err
+		return nil, err
 	}
 	defer client.Close()
 	args.psw = m.Password
 	err = client.Call(methodGetInfo, args, &reply)
 	if err != nil {
-		return _, err
+		return nil, err
 	}
 	return reply, nil
 }
