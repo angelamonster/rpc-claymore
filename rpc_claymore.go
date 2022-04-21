@@ -176,7 +176,7 @@ func (m Miner) GetInfo() (MinerInfo, error) {
 	return parseResponse(reply), nil
 }
 
-func (m Miner) GetJson() (MinerInfo, error) {
+func (m Miner) GetJson() ([]string, error) {
 	var mi MinerInfo
 	var reply []string
 	client, err := jsonrpc.Dial("tcp", m.Address)
