@@ -112,7 +112,7 @@ func (m MinerInfo) String() string {
 	return s
 }
 
-func (m MinerInfo) json_string() string {
+func (m MinerInfo) Json_string() string {
 	json_bytes, _ := json.Marshal(m)
 
 	return string(json_bytes)
