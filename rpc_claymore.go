@@ -21,10 +21,10 @@ var args = struct {
 
 // Crypto Information about this concrete crypto-currency
 type Crypto struct {
-	HashRate       int
-	Shares         int
-	RejectedShares int
-	InvalidShares  int
+	HashRate       int `json:"hashrate"`
+	Shares         int `json:"shares"`
+	RejectedShares int `json:"rejected"`
+	InvalidShares  int `json:"invalid"`
 }
 
 func (c Crypto) String() (s string) {
@@ -40,8 +40,8 @@ func (c Crypto) String() (s string) {
 
 // PoolInfo Information about the miner's connected pool
 type PoolInfo struct {
-	Address  string
-	Switches int
+	Address  string `json:"adress"`
+	Switches int    `json:"switches"`
 }
 
 func (p PoolInfo) String() (s string) {
@@ -55,10 +55,10 @@ func (p PoolInfo) String() (s string) {
 
 // GPU Information about each concrete GPU
 type GPU struct {
-	HashRate    int
-	AltHashRate int
-	Temperature int
-	FanSpeed    int
+	HashRate    int `json:"hashrate"`
+	AltHashRate int `json:"althashrate"`
+	Temperature int `json:"temperature"`
+	FanSpeed    int `json:"fanspeed"`
 }
 
 func (gpu GPU) String() (s string) {
@@ -76,12 +76,12 @@ func (gpu GPU) IsStuck() bool {
 
 // MinerInfo Information about the miner
 type MinerInfo struct {
-	Version    string
-	UpTime     int
-	MainCrypto Crypto
-	AltCrypto  Crypto
-	MainPool   PoolInfo
-	AltPool    PoolInfo
+	Version    string   `json:"version"`
+	UpTime     int      `json:"uptime"`
+	MainCrypto Crypto   `json:"maincrypto"`
+	AltCrypto  Crypto   `json:"altcrypto"`
+	MainPool   PoolInfo `json:"mainpool"`
+	AltPool    PoolInfo `json:"altpool"`
 	GPUS       []GPU
 }
 
@@ -108,6 +108,22 @@ func (m MinerInfo) String() string {
 	for i, gpu := range m.GPUS {
 		s += fmt.Sprintf("GPU %d\n%s\n", i, gpu)
 	}
+	return s
+}
+
+func (m MinerInfo) json_string() string {
+	var s string
+	s += fmt.Sprintf("Version:   %10s\n", m.Version)
+	s += fmt.Sprintf("Up Time:   %10d min\n", m.UpTime)
+	s += "\n"
+	s += fmt.Sprintf("Main Crypto\n%s\n", m.MainCrypto)
+	s += fmt.Sprintf("Alt Crypto\n%s\n", m.AltCrypto)
+	s += fmt.Sprintf("Main Pool\n%s\n", m.MainPool)
+	s += fmt.Sprintf("Alt Pool\n%s\n", m.AltPool)
+	for i, gpu := range m.GPUS {
+		s += fmt.Sprintf("GPU %d\n%s\n", i, gpu)
+	}
+
 	return s
 }
 
